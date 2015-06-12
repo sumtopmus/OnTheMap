@@ -1,0 +1,4 @@
+Top login screen:      170.108.36
+Bottom login screen:   199.87.41
+Login button:          175.50.35
+Text fields:           190.150.120
