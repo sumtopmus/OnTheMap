@@ -13,8 +13,18 @@ class MapViewController: UIViewController {
 
     // MARK: - Actions and Outlets
 
-    @IBOutlet weak var navigationBar: AppNavigationBar!
     @IBOutlet weak var mapView: MKMapView!
+
+    @IBAction func signOut(sender: UIBarButtonItem) {
+        UdacityAPI.client.signOut() { success in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+
+    @IBAction func addUserLocation(sender: UIBarButtonItem) {
+    }
 
     // MARK: - Lifecycle Methods
 

@@ -57,6 +57,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Y9-upH" userLabel="Debug Label">
+                                <rect key="frame" x="16" y="571.5" width="568" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,10 +77,12 @@
                             <constraint firstItem="O5G-XP-ePE" firstAttribute="height" secondItem="laO-ip-zWK" secondAttribute="height" id="GeI-IX-Dgk"/>
                             <constraint firstItem="laO-ip-zWK" firstAttribute="leading" secondItem="57x-lb-WKS" secondAttribute="leadingMargin" id="J6d-m1-3TA"/>
                             <constraint firstItem="laO-ip-zWK" firstAttribute="top" secondItem="cma-xU-U4c" secondAttribute="bottom" constant="8" symbolic="YES" id="JTC-To-cvP"/>
+                            <constraint firstItem="QWG-Y9-upH" firstAttribute="leading" secondItem="57x-lb-WKS" secondAttribute="leadingMargin" id="MLS-fI-uMD"/>
                             <constraint firstItem="0dX-xw-u0U" firstAttribute="top" secondItem="laO-ip-zWK" secondAttribute="bottom" constant="8" symbolic="YES" id="N6c-aX-YCe"/>
                             <constraint firstAttribute="centerY" secondItem="cma-xU-U4c" secondAttribute="centerY" id="QEa-pQ-g1r"/>
                             <constraint firstItem="cma-xU-U4c" firstAttribute="centerX" secondItem="laO-ip-zWK" secondAttribute="centerX" id="SDk-GC-g2S"/>
                             <constraint firstItem="RQv-Z1-adQ" firstAttribute="leading" secondItem="57x-lb-WKS" secondAttribute="leadingMargin" id="SUJ-xy-FYT"/>
+                            <constraint firstItem="oOh-oY-yVY" firstAttribute="top" secondItem="QWG-Y9-upH" secondAttribute="bottom" constant="8" symbolic="YES" id="SVp-2T-41F"/>
                             <constraint firstItem="cma-xU-U4c" firstAttribute="width" secondItem="laO-ip-zWK" secondAttribute="width" id="TlL-ze-DcN"/>
                             <constraint firstAttribute="centerX" secondItem="laO-ip-zWK" secondAttribute="centerX" id="dDc-Kn-M6L"/>
                             <constraint firstItem="O5G-XP-ePE" firstAttribute="width" secondItem="laO-ip-zWK" secondAttribute="width" id="eFD-c2-9dH"/>
@@ -83,15 +91,18 @@
                             <constraint firstItem="Xud-to-28J" firstAttribute="height" secondItem="laO-ip-zWK" secondAttribute="height" id="kug-so-hPj"/>
                             <constraint firstItem="cma-xU-U4c" firstAttribute="top" secondItem="O5G-XP-ePE" secondAttribute="bottom" constant="8" symbolic="YES" id="qvD-ee-AnB"/>
                             <constraint firstItem="RQv-Z1-adQ" firstAttribute="top" secondItem="qwg-DL-hhg" secondAttribute="bottom" constant="8" symbolic="YES" placeholder="YES" id="uGz-eR-J7w"/>
+                            <constraint firstItem="QWG-Y9-upH" firstAttribute="trailing" secondItem="57x-lb-WKS" secondAttribute="trailingMargin" id="xhd-lc-HUg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="debugLabel" destination="QWG-Y9-upH" id="oTz-3V-AN1"/>
                         <outlet property="loginField" destination="cma-xU-U4c" id="LdC-9p-GXp"/>
                         <outlet property="loginLabel" destination="O5G-XP-ePE" id="KWe-26-y2U"/>
                         <outlet property="logoView" destination="RQv-Z1-adQ" id="403-8d-g4G"/>
                         <outlet property="passwordField" destination="laO-ip-zWK" id="NkY-fk-eSa"/>
                         <outlet property="signInButton" destination="0dX-xw-u0U" id="pZR-Qf-GV6"/>
                         <outlet property="signUpButton" destination="Xud-to-28J" id="7Qw-Nv-Xjb"/>
+                        <segue destination="lVS-xp-2li" kind="showDetail" identifier="Sign In Segue" id="OZW-wH-1nx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8U-Zn-eDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -134,7 +145,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="List" id="Pnc-MZ-fbC" userLabel="List"/>
                     <connections>
-                        <outlet property="navigationBar" destination="uvj-6I-fcC" id="Ga0-Q8-6SX"/>
                         <outlet property="tableView" destination="NiJ-hC-G2a" id="Apu-l7-SVd"/>
                     </connections>
                 </viewController>
@@ -172,6 +182,50 @@
             </objects>
             <point key="canvasLocation" x="2713" y="389"/>
         </scene>
+        <!--Navigation Bar View Controller-->
+        <scene sceneID="hXw-qU-Ekb">
+            <objects>
+                <viewController id="HqI-zl-z8P" customClass="NavigationBarViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AXg-aN-d5t"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Pz-zl-Vb1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uql-fb-eX9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vQ-4O-qK5">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="dID-fk-FaB">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="qHq-OU-2cG" userLabel="Sign Out">
+                                            <connections>
+                                                <action selector="signOut:" destination="HqI-zl-z8P" id="JFu-s3-5o6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4ks-QK-DOp" userLabel="Add Location">
+                                            <connections>
+                                                <action selector="addUserLocation:" destination="HqI-zl-z8P" id="miu-2p-fy4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9vQ-4O-qK5" firstAttribute="leading" secondItem="Uql-fb-eX9" secondAttribute="leading" id="K99-nb-QLi"/>
+                            <constraint firstAttribute="trailing" secondItem="9vQ-4O-qK5" secondAttribute="trailing" id="a9Y-5k-ybN"/>
+                            <constraint firstItem="9vQ-4O-qK5" firstAttribute="top" secondItem="AXg-aN-d5t" secondAttribute="bottom" id="yIB-c2-k6N"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7I-AK-vmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2698" y="-909"/>
+        </scene>
         <!--Map View Controller-->
         <scene sceneID="plK-EX-GSe">
             <objects>
@@ -187,7 +241,18 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgI-j9-PXI" customClass="AppNavigationBar" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="gNF-hT-Rak"/>
+                                    <navigationItem title="Title" id="gNF-hT-Rak">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="Vhf-1a-sp6" userLabel="Sign Out">
+                                            <connections>
+                                                <action selector="signOut:" destination="ktZ-7S-R3D" id="XEA-9B-dkM"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YTB-nR-jjT" userLabel="Add User Location">
+                                            <connections>
+                                                <action selector="addUserLocation:" destination="ktZ-7S-R3D" id="qug-7q-K3n"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hzW-W5-XSx">
@@ -208,7 +273,6 @@
                     <tabBarItem key="tabBarItem" title="Map" id="hGD-lf-zXB" userLabel="Map"/>
                     <connections>
                         <outlet property="mapView" destination="hzW-W5-XSx" id="FPz-Q3-0q1"/>
-                        <outlet property="navigationBar" destination="jgI-j9-PXI" id="0Um-6h-bXJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f78-ys-v55" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,7 +282,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="apn-Rc-7Bp">
             <objects>
-                <tabBarController id="lVS-xp-2li" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="crossDissolve" id="lVS-xp-2li" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="LOF-Fb-Mbk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

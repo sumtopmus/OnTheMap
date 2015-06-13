@@ -10,7 +10,6 @@ import UIKit
 
 class ListViewController: UIViewController {
 
-    @IBOutlet weak var navigationBar: AppNavigationBar!
     @IBOutlet weak var tableView: UITableView!
 
 
