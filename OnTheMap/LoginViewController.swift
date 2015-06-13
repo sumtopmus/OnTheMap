@@ -36,15 +36,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     @IBOutlet weak var debugLabel: UILabel!
 
     @IBAction func signIn(sender: UIButton) {
-        self.view.endEditing(true)        
+        self.view.endEditing(true)
+        clearDebugLabel()
         if checkValidness(loginField: loginField, passwordField: passwordField) {
             UdacityAPI.client.signIn(login: loginField.text, password: passwordField.text) { success in
-                if success {
-                    self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
+                dispatch_async(dispatch_get_main_queue()) {
+                    if success {
+                        self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
+                    } else {
+                        self.passwordField.text = ""
+                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
+                    }
                 }
             }
         } else {
-            debugLabel.text = View.InvalidLoginOrPasswordFields
+            setAndDissolveDebugLabel(View.InvalidTextFields)
         }
     }
 
@@ -168,16 +174,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         signUpButton.setTitle(View.SignUpLabel, forState: UIControlState.Normal)
     }
 
-    private func setupDebugLabel() {
-        debugLabel.font = View.Font
-        debugLabel.textColor = View.TextColor
-        debugLabel.textAlignment = NSTextAlignment.Center
-        debugLabel.text = ""
-    }
-
     private func clearTextFields() {
         loginField.text = ""
         passwordField.text = ""
+    }
+
+    // Debug label
+
+    private func setupDebugLabel() {
+        //        debugLabel.frame.size.height = 44.0
+        debugLabel.font = View.Font
+        debugLabel.textColor = View.TextColor
+        debugLabel.textAlignment = NSTextAlignment.Center
+        clearDebugLabel()
+    }
+
+    private func setAndDissolveDebugLabel(text: String) {
+        debugLabel.alpha = View.DebugLabelMaxAlpha
+        debugLabel.text = text
+
+        UIView.animateWithDuration(View.DebugLabelAnimationDuration) {
+            self.debugLabel.alpha = 0.0
+        }
+    }
+
+    private func clearDebugLabel() {
+        debugLabel.text = ""
+        debugLabel.alpha = View.DebugLabelMaxAlpha
     }
 
     // MARK: - Keyboard-dependent Layout
@@ -194,6 +217,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     }
 
     func keyboardWillShow(notification: NSNotification) {
+        clearDebugLabel()
         if !layoutAdjustedToKeyboard {
             lastViewOffset = getMainViewShift(getKeyboardHeight(notification))
             lastLogoOffset = logoView.frame.maxY - lastViewOffset

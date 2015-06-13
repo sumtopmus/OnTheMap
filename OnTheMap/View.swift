@@ -54,6 +54,11 @@ struct View {
     static let KeyboardMinimalHeight: CGFloat = 200.0
 
     // Debug text
-    static let InvalidLoginOrPasswordFields = "Login and password should be nonempty"
+    static let InvalidTextFields = "Login and password should be nonempty"
+    static let InvalidCredentials = "Account not found or invalid credentials"
+
+    // Debug label
+    static let DebugLabelMaxAlpha: CGFloat = 1.0
+    static let DebugLabelAnimationDuration: NSTimeInterval = 5.0
 
 }

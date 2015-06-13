@@ -18,7 +18,9 @@ class MapViewController: UIViewController {
     @IBAction func signOut(sender: UIBarButtonItem) {
         UdacityAPI.client.signOut() { success in
             if success {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                dispatch_async(NSOperationQueue.mainQueue()) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
     }

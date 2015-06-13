@@ -49,7 +49,7 @@ class UdacityAPI {
             JSONKeys.Password : password
         ]
 
-        let url = constructHTTPCall(Methods.Session, optionalParameters: nil)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalParameters: nil)
         let request = createPOSTRequest(url, parameters: parameters)
         performRequest(request) { jsonData in
             println("Log: In signIn method, jsonData is obtained.")
@@ -67,7 +67,7 @@ class UdacityAPI {
     func signOut(completion: ((success: Bool) -> Void)?) {
         println("Log: In signOut method, preparing request...")
 
-        let url = constructHTTPCall(Methods.Session, optionalParameters: nil)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalParameters: nil)
         let request = createDELETERequest(url)
 
         println("TODO: Check if one needs to wait for a particular response to log out")
@@ -93,9 +93,9 @@ class UdacityAPI {
     // Create POST request
     private func createPOSTRequest(url: NSURL, parameters: [String:String]) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = HTTPMethods.POST
-        request.addValue(HTTPHeader.JSON, forHTTPHeaderField: HTTPHeader.Accept)
-        request.addValue(HTTPHeader.JSON, forHTTPHeaderField: HTTPHeader.Content)
+        request.HTTPMethod = HTTP.Methods.POST
+        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.Accept)
+        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.Content)
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(constructJSONObjectFromParameters(parameters), options: nil, error: nil)
 
         return request
@@ -104,7 +104,7 @@ class UdacityAPI {
     // Create DELETE request
     private func createDELETERequest(url: NSURL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = HTTPMethods.DELETE
+        request.HTTPMethod = HTTP.Methods.DELETE
 
         var xsrfCookie: NSHTTPCookie?
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -114,7 +114,7 @@ class UdacityAPI {
             }
         }
         if let xsrfCookieUnwrapped = xsrfCookie {
-            request.addValue(xsrfCookieUnwrapped.value!, forHTTPHeaderField: HTTPHeader.XSRF)
+            request.addValue(xsrfCookieUnwrapped.value!, forHTTPHeaderField: HTTP.Header.XSRF)
         }
 
         return request
@@ -134,25 +134,6 @@ class UdacityAPI {
         }
 
         task.resume()
-    }
-
-    // Construct HTTP URL given method and parameters
-    private func constructHTTPCall(method: String, optionalParameters: [String : String]?) -> NSURL {
-        var urlString = Defaults.SecureBaseURL + method
-        if let parameters = optionalParameters {
-            urlString += parameters.isEmpty ? "" : "?"
-
-            var parametersSet = [String]()
-            for (key, value) in parameters {
-                if let escapeEncodedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
-                    parametersSet.append(key + "=" + escapeEncodedValue)
-                }
-            }
-            
-            urlString += join("&", parametersSet)
-        }
-
-        return NSURL(string: urlString)!
     }
 
     // Construct JSON object for HTTP body given parameters
@@ -192,11 +173,6 @@ extension UdacityAPI {
     // API methods
     private struct Methods {
         static let Session = "session"
-    }
-
-    // API parameters keys
-    private struct Keys {
-
     }
 
     // JSON keys

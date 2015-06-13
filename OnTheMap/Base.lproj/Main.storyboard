@@ -20,6 +20,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQv-Z1-adQ" userLabel="Udacity Logo">
                                 <rect key="frame" x="16" y="28" width="568" height="190"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5G-XP-ePE" userLabel="Login Label">
+                                <rect key="frame" x="16" y="226" width="568" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cma-xU-U4c" userLabel="Login Field">
                                 <rect key="frame" x="16" y="278" width="568" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,14 +57,8 @@
                                     <action selector="signUp:" destination="2xI-Bf-JUX" eventType="touchUpInside" id="fbT-x8-Fvr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5G-XP-ePE" userLabel="Login Label">
-                                <rect key="frame" x="16" y="226" width="568" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Y9-upH" userLabel="Debug Label">
-                                <rect key="frame" x="16" y="571.5" width="568" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEBUG" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Y9-upH" userLabel="Debug Label">
+                                <rect key="frame" x="16" y="559.5" width="568" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                             <constraint firstAttribute="centerY" secondItem="cma-xU-U4c" secondAttribute="centerY" id="QEa-pQ-g1r"/>
                             <constraint firstItem="cma-xU-U4c" firstAttribute="centerX" secondItem="laO-ip-zWK" secondAttribute="centerX" id="SDk-GC-g2S"/>
                             <constraint firstItem="RQv-Z1-adQ" firstAttribute="leading" secondItem="57x-lb-WKS" secondAttribute="leadingMargin" id="SUJ-xy-FYT"/>
-                            <constraint firstItem="oOh-oY-yVY" firstAttribute="top" secondItem="QWG-Y9-upH" secondAttribute="bottom" constant="8" symbolic="YES" id="SVp-2T-41F"/>
+                            <constraint firstItem="oOh-oY-yVY" firstAttribute="top" secondItem="QWG-Y9-upH" secondAttribute="bottom" constant="20" id="SVp-2T-41F"/>
                             <constraint firstItem="cma-xU-U4c" firstAttribute="width" secondItem="laO-ip-zWK" secondAttribute="width" id="TlL-ze-DcN"/>
                             <constraint firstAttribute="centerX" secondItem="laO-ip-zWK" secondAttribute="centerX" id="dDc-Kn-M6L"/>
                             <constraint firstItem="O5G-XP-ePE" firstAttribute="width" secondItem="laO-ip-zWK" secondAttribute="width" id="eFD-c2-9dH"/>

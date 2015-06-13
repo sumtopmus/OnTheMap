@@ -22,7 +22,7 @@
 		2AF631CC1B2B87A900F01999 /* UdacityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF631CB1B2B87A900F01999 /* UdacityAPI.swift */; };
 		2AF631CE1B2B911600F01999 /* OnTheMapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF631CD1B2B911600F01999 /* OnTheMapLocation.swift */; };
 		2AF631D11B2B918100F01999 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF631D01B2B918100F01999 /* ParseAPI.swift */; };
-		2AF631D31B2B9C6100F01999 /* HTTPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF631D21B2B9C6100F01999 /* HTTPConstants.swift */; };
+		2AF631D31B2B9C6100F01999 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF631D21B2B9C6100F01999 /* HTTP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,7 @@
 		2AF631CB1B2B87A900F01999 /* UdacityAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPI.swift; sourceTree = "<group>"; };
 		2AF631CD1B2B911600F01999 /* OnTheMapLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheMapLocation.swift; sourceTree = "<group>"; };
 		2AF631D01B2B918100F01999 /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
-		2AF631D21B2B9C6100F01999 /* HTTPConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPConstants.swift; sourceTree = "<group>"; };
+		2AF631D21B2B9C6100F01999 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,7 @@
 		2A5B21691B2B75D50099EC1C /* API */ = {
 			isa = PBXGroup;
 			children = (
-				2AF631D21B2B9C6100F01999 /* HTTPConstants.swift */,
+				2AF631D21B2B9C6100F01999 /* HTTP.swift */,
 				2AF631CB1B2B87A900F01999 /* UdacityAPI.swift */,
 				2AF631D01B2B918100F01999 /* ParseAPI.swift */,
 			);
@@ -277,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5B21711B2B76080099EC1C /* LoginViewController.swift in Sources */,
-				2AF631D31B2B9C6100F01999 /* HTTPConstants.swift in Sources */,
+				2AF631D31B2B9C6100F01999 /* HTTP.swift in Sources */,
 				2AF631CC1B2B87A900F01999 /* UdacityAPI.swift in Sources */,
 				2A4CD0AF1B2C1EEE00CC6E1B /* AppNavigationBar.swift in Sources */,
 				2A5B21701B2B76080099EC1C /* ListViewController.swift in Sources */,
