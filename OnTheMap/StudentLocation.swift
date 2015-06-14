@@ -39,7 +39,10 @@ class StudentLocation: NSObject {
     convenience init(user: User) {
         self.init()
 
-        // TODO: Implement User -> StudentLocation initializer
+        self.firstName = user.firstName
+        self.lastName = user.lastName
+
+        self.uniqueKey = user.uniqueKey
     }
 }
 
@@ -65,18 +68,15 @@ extension StudentLocation {
         if let updatedAt = jsonDictionary[ParseAPI.JSONKeys.UpdatedAt] as? String { self.updatedAt = updatedAt }
     }
 
-    func toJSONDictionary() -> [String:AnyObject] {
+    func toPOSTJSONDictionary() -> [String:AnyObject] {
         let result = [
-            ParseAPI.JSONKeys.ObjectID : objectID,
-            ParseAPI.JSONKeys.UniqueKey : uniqueKey,
             ParseAPI.JSONKeys.FirstName : firstName,
             ParseAPI.JSONKeys.LastName : lastName,
             ParseAPI.JSONKeys.MapString : mapString,
             ParseAPI.JSONKeys.MediaURL : mediaURL,
             ParseAPI.JSONKeys.Latitude : latitude,
             ParseAPI.JSONKeys.Longitude : longitude,
-            ParseAPI.JSONKeys.CreatedAt : createdAt,
-            ParseAPI.JSONKeys.UpdatedAt : updatedAt
+            ParseAPI.JSONKeys.UniqueKey : uniqueKey
         ]
 
         return result as! [String : AnyObject]

@@ -29,7 +29,7 @@ class UdacityAPI {
 
     // MARK: - Properties
 
-    var sessionID: String? {
+    var sessionID: String! {
         didSet {
             if sessionID != nil {
                 println("Log: Session ID obtained.")
@@ -39,7 +39,7 @@ class UdacityAPI {
         }
     }
 
-    var user: User?
+    var user: User!
 
     // MARK: - Public API Access
 
@@ -59,8 +59,7 @@ class UdacityAPI {
 
             if let sessionID = self.sessionIDFromSignInJSONResponse(jsonData) {
                 self.sessionID = sessionID
-//                getUserData(userID: <#String#>, completion: <#((success: Bool) -> Void)?##(success: Bool) -> Void#>)
-                completion?(success: true)
+                self.getUserData(userID: Defaults.SelfAccount, completion: completion)
             } else {
                 completion?(success: false)
             }
@@ -85,17 +84,20 @@ class UdacityAPI {
     func getUserData(#userID: String, completion: ((success: Bool) -> Void)? = nil) {
         println("Log: In getUserData method, preparing request...")
 
-        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalSuffix: userID)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Users, optionalSuffix: userID)
         let request = createGETRequest(url)
         performRequest(request) { jsonData in
             println("Log: In getUserData method, jsonData is obtained.")
             println("\(jsonData!)")
 
-            println("TODO: Check obtained jsonData and send userData to completion")
-            completion?(success: false)
+            if let user = self.userDataFromJSONResponse(jsonData) {
+                self.user = user
+                completion?(success: true)
+            } else {
+                completion?(success: false)
+            }
         }
     }
-
 
     // MARK: - Internal API Access (HTTP Requests)
 
@@ -173,6 +175,18 @@ class UdacityAPI {
         }
         return result
     }
+
+    private func userDataFromJSONResponse(jsonResponse: AnyObject?) -> User? {
+        var result: User?
+        if let jsonObject = jsonResponse as? [String:AnyObject],
+            user = jsonObject[JSONKeys.User] as? [String:AnyObject],
+            firstName = user[JSONKeys.FirstName] as? String,
+            lastName = user[JSONKeys.LastName] as? String,
+            uniqueKey = user[JSONKeys.UniqueKey] as? String {
+                result = User(firstName: firstName, lastName: lastName, uniqueKey: uniqueKey)
+        }
+        return result
+    }
 }
 
 // MARK: - Constants
@@ -181,6 +195,7 @@ extension UdacityAPI {
     // General magic values
     private struct Defaults {
         static let SecureBaseURL = "https://www.udacity.com/api/"
+        static let SelfAccount = "me"
         static let NumberOfSecurityCharacters = 5
     }
 
@@ -198,9 +213,16 @@ extension UdacityAPI {
     // JSON keys
     private struct JSONKeys {
         static let MainKey = "udacity"
+
         static let Username = "username"
         static let Password = "password"
+
         static let Session = "session"
         static let SessionID = "id"
+
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
+        static let UniqueKey = "key"
     }
 }

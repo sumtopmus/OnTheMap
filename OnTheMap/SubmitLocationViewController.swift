@@ -51,10 +51,15 @@ class SubmitLocationViewController: UIViewController, UITextFieldDelegate, MKMap
         let items = response.mapItems as! [MKMapItem]
         mapView.addAnnotations(items.map { $0.placemark as MKAnnotation })
         mapView.showAnnotations(mapView.annotations, animated: false)
+        if mapView.annotations.count == 1 {
+            let annotation = mapView.annotations.first as! MKAnnotation
+            coordinate = annotation.coordinate
+            enableDoneButtonIfDataIsSet()
+        }
     }
 
     private func enableDoneButtonIfDataIsSet() {
-        if userMediaLinkField.text != "" && coordinate != nil {
+        if coordinate != nil {
             doneButton.enabled = true
         }
     }
@@ -104,7 +109,7 @@ class SubmitLocationViewController: UIViewController, UITextFieldDelegate, MKMap
 
         setupUI()
 
-        doneButton.enabled = false
+        enableDoneButtonIfDataIsSet()
 
         var request = MKLocalSearchRequest()
         request.naturalLanguageQuery = userLocation

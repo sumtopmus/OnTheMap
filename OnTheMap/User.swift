@@ -9,5 +9,16 @@
 import Foundation
 
 class User {
-    // TODO: Implement Udacity User class
+
+    var firstName: String
+    var lastName: String
+
+    var uniqueKey: String
+
+    init(firstName: String, lastName: String, uniqueKey: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        
+        self.uniqueKey = uniqueKey
+    }
 }

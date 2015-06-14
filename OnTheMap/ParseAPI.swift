@@ -45,7 +45,7 @@ class ParseAPI {
 
     func postUserLocation(location: StudentLocation, completion: ((success: Bool) -> Void)?) {
         let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.StudentLocation)
-        let request = createPOSTRequest(url, parameters: location.toJSONDictionary())
+        let request = createPOSTRequest(url, parameters: location.toPOSTJSONDictionary())
 
         performRequest(request) { jsonData in
             println("Log: In postUserLocation method, jsonData is obtained.")

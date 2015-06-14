@@ -35,12 +35,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         let userLocation = StudentLocation(user: UdacityAPI.client.user!)
         userLocation.latitude = sourceViewController.coordinate.latitude
-        userLocation.latitude = sourceViewController.coordinate.longitude
+        userLocation.longitude = sourceViewController.coordinate.longitude
+        userLocation.mapString = sourceViewController.userLocation
         userLocation.mediaURL = sourceViewController.userMediaLinkField.text
 
         ParseAPI.client.postUserLocation(userLocation) { success in
             if success {
-                self.mapView.addAnnotation(userLocation)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.mapView.addAnnotation(userLocation)
+                    self.mapView.showAnnotations([userLocation], animated: true)
+                }
             }
         }
     }

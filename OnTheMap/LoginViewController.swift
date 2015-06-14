@@ -68,16 +68,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         self.view.endEditing(true)
         clearDebugLabel()
         if checkValidness(loginField: loginField, passwordField: passwordField) {
-            // DEBUG_ONLY CAP
-//            UdacityAPI.client.signIn(login: Defaults.Login, password: Defaults.Password) { success in
             UdacityAPI.client.signIn(login: loginField.text, password: passwordField.text) { success in
                 dispatch_async(dispatch_get_main_queue()) {
-//                    if success {
+                    if success {
                         self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
-//                    } else {
-//                        self.passwordField.text = ""
-//                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
-//                    }
+                    } else {
+                        self.passwordField.text = ""
+                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
+                    }
                 }
             }
         } else {
@@ -280,9 +278,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         setupUI()
 
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Defaults.OnTapSelector)
-
-        // DEBUG_ONLY CAP
-        signIn()
     }
 
     override func viewWillAppear(animated: Bool) {
