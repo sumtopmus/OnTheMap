@@ -121,13 +121,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uvj-6I-fcC" customClass="AppNavigationBar" customModule="OnTheMap" customModuleProvider="target">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvj-6I-fcC" customClass="AppNavigationBar" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="On The Map" id="dP8-2U-3Mm"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NiJ-hC-G2a">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NiJ-hC-G2a">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -143,6 +143,7 @@
                             <constraint firstItem="uvj-6I-fcC" firstAttribute="trailing" secondItem="10h-nO-tC5" secondAttribute="trailing" id="wVh-Fh-Vug"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="rIb-Sm-Hod"/>
                     <navigationItem key="navigationItem" id="w0b-rZ-zJ4"/>
                     <connections>
                         <outlet property="tableView" destination="NiJ-hC-G2a" id="Apu-l7-SVd"/>
@@ -150,7 +151,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fh6-6C-PFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="8"/>
+            <point key="canvasLocation" x="694" y="37"/>
+        </scene>
+        <!--Add Location View Controller-->
+        <scene sceneID="DAI-NY-fl7">
+            <objects>
+                <viewController id="izF-gx-a7e" customClass="AddLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aIl-6s-vL0"/>
+                        <viewControllerLayoutGuide type="bottom" id="D1W-jj-MWQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5yi-ID-aqo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFb-jb-Xra" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1580" y="-323"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="plK-EX-GSe">
@@ -167,34 +186,59 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hzW-W5-XSx">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wG-B7-FcC">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="cR9-iH-Rme">
+                                        <barButtonItem key="leftBarButtonItem" image="map-pin" id="Vhf-1a-sp6" userLabel="Add User Location">
+                                            <connections>
+                                                <action selector="addUserLocation:" destination="ktZ-7S-R3D" id="aBS-ve-rWd"/>
+                                                <segue destination="izF-gx-a7e" kind="presentation" identifier="Add User Location" id="X2f-0F-DLu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="YTB-nR-jjT" userLabel="Refresh Locations">
+                                            <connections>
+                                                <action selector="refreshLocations:" destination="ktZ-7S-R3D" id="fGM-70-8Ls"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3wG-B7-FcC" firstAttribute="bottom" secondItem="hzW-W5-XSx" secondAttribute="top" id="7Cs-tB-64W"/>
+                            <constraint firstItem="3wG-B7-FcC" firstAttribute="trailing" secondItem="hzW-W5-XSx" secondAttribute="trailing" id="PdR-Mo-hKq"/>
                             <constraint firstItem="hzW-W5-XSx" firstAttribute="top" secondItem="Ssk-AJ-Nit" secondAttribute="bottom" id="RtA-Zf-aIE"/>
                             <constraint firstAttribute="trailing" secondItem="hzW-W5-XSx" secondAttribute="trailing" id="WnS-QB-GHe"/>
+                            <constraint firstItem="3wG-B7-FcC" firstAttribute="top" secondItem="Ssk-AJ-Nit" secondAttribute="bottom" id="XaA-uP-jr4"/>
+                            <constraint firstItem="3wG-B7-FcC" firstAttribute="leading" secondItem="hzW-W5-XSx" secondAttribute="leading" id="Z75-Bo-n3O"/>
+                            <constraint firstAttribute="trailing" secondItem="3wG-B7-FcC" secondAttribute="trailing" id="cXY-7H-B2N"/>
                             <constraint firstItem="hzW-W5-XSx" firstAttribute="leading" secondItem="4yN-jG-nJx" secondAttribute="leading" id="evF-Nx-YdK"/>
+                            <constraint firstItem="3wG-B7-FcC" firstAttribute="leading" secondItem="4yN-jG-nJx" secondAttribute="leading" id="jTG-g0-eU5"/>
                             <constraint firstItem="hzW-W5-XSx" firstAttribute="bottom" secondItem="4Yh-AU-DWA" secondAttribute="top" id="wF4-PC-peo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PdR-Mo-hKq"/>
+                                <exclude reference="Z75-Bo-n3O"/>
+                                <exclude reference="RtA-Zf-aIE"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="On The Map" id="lsu-um-leb">
-                        <barButtonItem key="leftBarButtonItem" image="map-pin" id="Vhf-1a-sp6" userLabel="Add User Location">
-                            <connections>
-                                <action selector="addUserLocation:" destination="ktZ-7S-R3D" id="aBS-ve-rWd"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="YTB-nR-jjT" userLabel="Refresh Locations">
-                            <connections>
-                                <action selector="refreshLocations:" destination="ktZ-7S-R3D" id="fGM-70-8Ls"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Map" image="pin-on-map-unselected" id="e11-9r-Agh">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="pin-on-map-selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="On The Map" id="lsu-um-leb"/>
                     <connections>
                         <outlet property="mapView" destination="hzW-W5-XSx" id="FPz-Q3-0q1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f78-ys-v55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="-654"/>
+            <point key="canvasLocation" x="694" y="-656"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="apn-Rc-7Bp">
@@ -207,55 +251,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BUD-QA-edm" kind="relationship" relationship="viewControllers" id="FGF-A5-pSB"/>
-                        <segue destination="2sr-41-pmg" kind="relationship" relationship="viewControllers" id="OY2-Cv-bjp"/>
+                        <segue destination="ktZ-7S-R3D" kind="relationship" relationship="viewControllers" id="yvb-Fo-rpg"/>
+                        <segue destination="AO1-8b-X3z" kind="relationship" relationship="viewControllers" id="7CV-CI-Mip"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVG-DX-X0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-126" y="-323"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="EA0-JN-VJE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="BUD-QA-edm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="pin-on-map-unselected" id="hGD-lf-zXB" userLabel="Map">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="pin-on-map-selected"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RUD-Yo-ZzJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ktZ-7S-R3D" kind="relationship" relationship="rootViewController" id="S9t-4P-qO7"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bfy-lx-Q98" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="694" y="-654"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="voa-70-sMy">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2sr-41-pmg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list" id="Pnc-MZ-fbC" userLabel="List"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MMa-Lp-A0m">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AO1-8b-X3z" kind="relationship" relationship="rootViewController" id="oHT-YT-CaG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GFg-NH-oqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="694" y="8"/>
         </scene>
     </scenes>
     <resources>

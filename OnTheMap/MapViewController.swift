@@ -14,7 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Magic Values
     private struct Defaults {
         static let AnnotationViewReuseIdentifier = "Standard Pin Annotation View"
-        static let ShowWebViewSegue = "Show Web View"
+        static let AddUserLocationSegue = "Add User Location"
     }
 
     // MARK: - Actions and Outlets
