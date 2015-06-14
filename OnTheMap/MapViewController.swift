@@ -64,7 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         if let urlString = view.annotation.subtitle, url = NSURL(string: urlString) {
-            performSegueWithIdentifier(Defaults.ShowWebViewSegue, sender: url)
+            // TODO: Open link in Safari
         }
     }
 
@@ -85,11 +85,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == Defaults.ShowWebViewSegue {
-            let navigationVC = segue.destinationViewController as! UINavigationController
-            let webVC = navigationVC.visibleViewController as! WebViewController
-            webVC.url = sender as! NSURL
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    }
 }
