@@ -27,7 +27,7 @@ class UdacityAPI {
         println("Log: UdacityAPI initialization.")
     }
 
-    // MARK: - Fields
+    // MARK: - Properties
 
     var sessionID: String? {
         didSet {
@@ -38,6 +38,8 @@ class UdacityAPI {
             }
         }
     }
+
+    var user: User?
 
     // MARK: - Public API Access
 
@@ -57,6 +59,7 @@ class UdacityAPI {
 
             if let sessionID = self.sessionIDFromSignInJSONResponse(jsonData) {
                 self.sessionID = sessionID
+//                getUserData(userID: <#String#>, completion: <#((success: Bool) -> Void)?##(success: Bool) -> Void#>)
                 completion?(success: true)
             } else {
                 completion?(success: false)
@@ -73,17 +76,9 @@ class UdacityAPI {
         println("TODO: Check if one needs to wait for a particular response to log out")
 
         performRequest(request, completion: nil)
-//        { jsonData in
-//            println("\(jsonData)")
-//
+
         self.sessionID = nil
-//
-//            if let data: AnyObject = jsonData {
-//                completion?(success: true)
-//            } else {
-//                completion?(success: false)
-//            }
-//        }
+
         completion?(success: true)
     }
 

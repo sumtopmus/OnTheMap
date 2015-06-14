@@ -25,11 +25,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    @IBAction func addUserLocation(sender: UIBarButtonItem) {
-    }
-
     @IBAction func refreshLocations(sender: UIBarButtonItem) {
         updateStudentLocations()
+    }
+
+    @IBAction func userLocationAdded(sender: UIStoryboardSegue)
+    {
+        let sourceViewController = sender.sourceViewController as! SubmitLocationViewController
+
+        let userLocation = StudentLocation(user: UdacityAPI.client.user!)
+        userLocation.latitude = sourceViewController.coordinate.latitude
+        userLocation.latitude = sourceViewController.coordinate.longitude
+        userLocation.mediaURL = sourceViewController.userMediaLinkField.text
+
+        ParseAPI.client.postUserLocation(userLocation) { success in
+            if success {
+                self.mapView.addAnnotation(userLocation)
+            }
+        }
     }
 
     // MARK: - Auxiliary methods
@@ -84,7 +97,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Defaults.AddUserLocationSegue {
+            let navVC = segue.destinationViewController as! UINavigationController
+            let destination = navVC.visibleViewController as! AddLocationViewController
+            destination.region = mapView.region
+        }
+    }
 }

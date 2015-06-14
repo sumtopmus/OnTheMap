@@ -72,12 +72,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 //            UdacityAPI.client.signIn(login: Defaults.Login, password: Defaults.Password) { success in
             UdacityAPI.client.signIn(login: loginField.text, password: passwordField.text) { success in
                 dispatch_async(dispatch_get_main_queue()) {
-                    if success {
+//                    if success {
                         self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
-                    } else {
-                        self.passwordField.text = ""
-                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
-                    }
+//                    } else {
+//                        self.passwordField.text = ""
+//                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
+//                    }
                 }
             }
         } else {
@@ -101,6 +101,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         setupSignInButton()
         setupSignUpButton()
         setupDebugLabel()
+
+        UITextField.appearance().tintColor = View.TextColor
     }
 
     private func setupMainView() {
@@ -128,7 +130,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     }
 
     private func setupIntroLabel() {
-        loginLabel.font = View.Font
+        loginLabel.font = View.StandardFont
         loginLabel.textColor = View.TextColor
         loginLabel.textAlignment = NSTextAlignment.Center
         loginLabel.text = View.IntroLabel
@@ -159,7 +161,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         textField.leftView = paddingView
         textField.leftViewMode = .Always
 
-        textField.font = View.Font
+        textField.font = View.StandardFont
         textField.textColor = View.SignInButtonBackgroundColor
 
         textField.delegate = self
@@ -167,7 +169,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     private func setupSignInButton() {
         signInButton.backgroundColor = View.SignInButtonBackgroundColor
-        signInButton.titleLabel?.font = View.Font
+        signInButton.titleLabel?.font = View.StandardFont
         signInButton.setTitleColor(View.TextColor, forState: .Normal)
         signInButton.setTitle(View.SignInLabel, forState: UIControlState.Normal)
 
@@ -175,7 +177,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     private func setupSignUpButton() {
         signUpButton.backgroundColor = UIColor.clearColor()
-        signUpButton.titleLabel?.font = View.Font
+        signUpButton.titleLabel?.font = View.StandardFont
         signUpButton.setTitleColor(View.TextColor, forState: .Normal)
         signUpButton.setTitle(View.SignUpLabel, forState: UIControlState.Normal)
     }
@@ -189,7 +191,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     private func setupDebugLabel() {
         //        debugLabel.frame.size.height = 44.0
-        debugLabel.font = View.Font
+        debugLabel.font = View.StandardFont
         debugLabel.textColor = View.TextColor
         debugLabel.textAlignment = NSTextAlignment.Center
         clearDebugLabel()
@@ -280,7 +282,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Defaults.OnTapSelector)
 
         // DEBUG_ONLY CAP
-//        signIn()
+        signIn()
     }
 
     override func viewWillAppear(animated: Bool) {

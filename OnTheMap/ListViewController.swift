@@ -10,6 +10,13 @@ import UIKit
 
 class ListViewController: UIViewController {
 
+    // Magic Values
+    private struct Defaults {
+        static let Latitude: CGFloat = 37.4282631
+        static let Longitude: CGFloat = -122.1712559
+        static let Radius: CGFloat = 100
+    }
+
     @IBOutlet weak var tableView: UITableView!
 
 

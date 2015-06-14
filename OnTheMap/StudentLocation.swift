@@ -29,6 +29,18 @@ class StudentLocation: NSObject {
     var updatedAt: String! = nil
 
     var ACL: String? = nil
+
+    // MARK: Initializers
+
+    override init() {
+        super.init()
+    }
+
+    convenience init(user: User) {
+        self.init()
+
+        // TODO: Implement User -> StudentLocation initializer
+    }
 }
 
 extension StudentLocation {

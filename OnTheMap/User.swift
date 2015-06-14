@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class User {
+    // TODO: Implement Udacity User class
+}

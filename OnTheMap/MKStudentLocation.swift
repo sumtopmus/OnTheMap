@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-// Conforming StudentLocation to MKAnnotation protocol to directly add it to MKMapView
+// Conforming StudentLocation to MKAnnotation protocol in order to add it directly to MKMapView
 extension StudentLocation: MKAnnotation {
 
     var coordinate: CLLocationCoordinate2D {

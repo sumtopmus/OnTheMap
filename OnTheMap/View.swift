@@ -12,10 +12,17 @@ import UIKit
 struct View {
 
     // UI elements: Fonts
-    static let FontName = "AvenirNext-Medium"
-    static let FontSize: CGFloat = 17.0
-    static let Font = UIFont(name: FontName, size: FontSize)
+    static let StandardFontName = "AvenirNext-Medium"
+    static let AddLocationFontName = "HelveticaNeue-Light"
+    static let AddLocationBoldFontName = "HelveticaNeue-Medium"
+    static let StandardFontSize: CGFloat = 17.0
+    static let AddLocationTopLabelsSize: CGFloat = 24.0
+    static let AddLocationTextFieldSize: CGFloat = 20.0
 
+    static let StandardFont = UIFont(name: StandardFontName, size: StandardFontSize)
+    static let AddLocationFont =  UIFont(name: AddLocationFontName, size: AddLocationTopLabelsSize)
+    static let AddLocationBoldFont = UIFont(name: AddLocationBoldFontName, size: AddLocationTopLabelsSize)
+    
     // UI elements: Colors
     static let TextColor = UIColor.whiteColor()
 
@@ -29,6 +36,11 @@ struct View {
     // another sceheme
 //    static let BackgroundGradientTopColor = UIColor(red: 255.0/255.0, green: 149.0/255.0, blue: 0.0/255.0, alpha: 1.0).CGColor
 //    static let BackgroundGradientBottomColor = UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0).CGColor
+
+    static let AddLocationBlueColor = UIColor(red: 51.0 / 255, green: 85.0 / 255, blue: 144.0 / 255, alpha: 1.0)
+    static let AddLocationGrayColor = UIColor(white: 85.0 / 255.0, alpha: 1.0)
+    static let AddLocationLightGrayColor = UIColor(white: 225.0 / 255.0, alpha: 1.0)
+    static let AddLocationBackgroundGrayColor = UIColor(white: 235.0 / 255.0, alpha: 1.0)
 
     // UI elements: Gradient location
     static let GradientTopLocation: CGFloat = 0.0
@@ -44,6 +56,13 @@ struct View {
     static let PasswordPlaceholder = "Password"
     static let SignInLabel = "Login"
     static let SignUpLabel = "Don't have an account? Sign Up"
+
+    static let AddLocationTopLabelText = "Where are you"
+    static let AddLocationMediumLabelText = "studying"
+    static let AddLocationBottomLabelText = "today?"
+    static let AddLocationHintText = "Enter Your Location Here"
+    static let AddLocationButtonText = "Find on the Map"
+    static let AddLinkHintText = "Enter a Link to Share Here"
 
     // TODO: Not used, remove
     // UI elements: Tags

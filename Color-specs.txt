@@ -5,3 +5,6 @@ or #FF9500 -> FF5E3A
 
 Login button:          175.50.35
 Text fields:           190.150.120
+
+
+Add location screen color: 51.85.144
