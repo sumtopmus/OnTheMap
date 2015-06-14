@@ -26,12 +26,17 @@ struct View {
     static let BackgroundGradientTopColor = UIColor(red: 180.0 / 255, green: 102.0 / 255, blue: 5.0 / 255, alpha: 1.0).CGColor
     static let BackgroundGradientBottomColor = UIColor(red: 199.0 / 255, green: 87.0 / 255, blue: 41.0 / 255, alpha: 1.0).CGColor
 
+    // another sceheme
+//    static let BackgroundGradientTopColor = UIColor(red: 255.0/255.0, green: 149.0/255.0, blue: 0.0/255.0, alpha: 1.0).CGColor
+//    static let BackgroundGradientBottomColor = UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0).CGColor
+
     // UI elements: Gradient location
     static let GradientTopLocation: CGFloat = 0.0
     static let GradientBottomLocation: CGFloat = 1.0
 
     // UI elements: Images
     static let UdacityLogoImage = "udacity-logo"
+    static let PinOnMapSelectedImage = "pin-on-map-selected"
 
     // UI elements: Text
     static let IntroLabel = "Login to Udacity"
@@ -60,5 +65,9 @@ struct View {
     // Debug label
     static let DebugLabelMaxAlpha: CGFloat = 1.0
     static let DebugLabelAnimationDuration: NSTimeInterval = 5.0
+
+    // Tags
+    static let MapVCTag = 0
+    static let ListVC = 1
 
 }

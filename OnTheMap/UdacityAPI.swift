@@ -41,7 +41,7 @@ class UdacityAPI {
 
     // MARK: - Public API Access
 
-    func signIn(#login: String, password: String, completion: ((success: Bool) -> Void)?) {
+    func signIn(#login: String, password: String, completion: ((success: Bool) -> Void)? = nil) {
         println("Log: In signIn method, preparing request...")
 
         let parameters = [
@@ -49,7 +49,7 @@ class UdacityAPI {
             JSONKeys.Password : password
         ]
 
-        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalParameters: nil)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session)
         let request = createPOSTRequest(url, parameters: parameters)
         performRequest(request) { jsonData in
             println("Log: In signIn method, jsonData is obtained.")
@@ -64,17 +64,16 @@ class UdacityAPI {
         }
     }
 
-    func signOut(completion: ((success: Bool) -> Void)?) {
+    func signOut(completion: ((success: Bool) -> Void)? = nil) {
         println("Log: In signOut method, preparing request...")
 
-        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalParameters: nil)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session)
         let request = createDELETERequest(url)
 
         println("TODO: Check if one needs to wait for a particular response to log out")
 
         performRequest(request, completion: nil)
 //        { jsonData in
-//            println("TODO: Implement completion of SignOut")
 //            println("\(jsonData)")
 //
         self.sessionID = nil
@@ -88,14 +87,34 @@ class UdacityAPI {
         completion?(success: true)
     }
 
+    func getUserData(#userID: String, completion: ((success: Bool) -> Void)? = nil) {
+        println("Log: In getUserData method, preparing request...")
+
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.Session, optionalSuffix: userID)
+        let request = createGETRequest(url)
+        performRequest(request) { jsonData in
+            println("Log: In getUserData method, jsonData is obtained.")
+            println("\(jsonData!)")
+
+            println("TODO: Check obtained jsonData and send userData to completion")
+            completion?(success: false)
+        }
+    }
+
+
     // MARK: - Internal API Access (HTTP Requests)
+
+    // Create GET request
+    private func createGETRequest(url: NSURL) -> NSMutableURLRequest {
+        return NSMutableURLRequest(URL: url)
+    }
 
     // Create POST request
     private func createPOSTRequest(url: NSURL, parameters: [String:String]) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = HTTP.Methods.POST
-        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.Accept)
-        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.Content)
+        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.AcceptField)
+        request.addValue(HTTP.Header.JSON, forHTTPHeaderField: HTTP.Header.ContentField)
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(constructJSONObjectFromParameters(parameters), options: nil, error: nil)
 
         return request
@@ -114,7 +133,7 @@ class UdacityAPI {
             }
         }
         if let xsrfCookieUnwrapped = xsrfCookie {
-            request.addValue(xsrfCookieUnwrapped.value!, forHTTPHeaderField: HTTP.Header.XSRF)
+            request.addValue(xsrfCookieUnwrapped.value!, forHTTPHeaderField: HeaderFields.XSRF)
         }
 
         return request
@@ -173,6 +192,12 @@ extension UdacityAPI {
     // API methods
     private struct Methods {
         static let Session = "session"
+        static let Users = "users/"
+    }
+
+    // HTTP header fields
+    private struct HeaderFields {
+        static let XSRF = "X-XSRF-Token"
     }
 
     // JSON keys

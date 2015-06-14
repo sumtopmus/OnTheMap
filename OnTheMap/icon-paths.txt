@@ -1,0 +1,20 @@
+list-44px:
+	download:	https://www.iconfinder.com/icons/216422/list_th_icon
+	license:	https://creativecommons.org/licenses/by-sa/3.0/#
+	author:		Stephen Hutchings
+	link:		http://typicons.com/
+	notes:		was changed/adapted
+
+map-pin-blue-30px:
+	download:	https://www.iconfinder.com/icons/284046/location_map_marker_pin_icon
+	license:	License: Free for commercial use
+	author:		By Linh Pham Thi Dieu
+	link:		https://www.iconfinder.com/phdieuli
+	notes:		was changed/adapted
+
+pin-on-map-44px:
+	download:	https://www.iconfinder.com/icons/171452/location_map_pin_icon
+	license:	Free for commercial use (Include link to authors website)
+	author:		Danilo Demarco
+	link:		http://www.danilodemarco.com/
+	notes:		was changed/adapted

@@ -18,16 +18,18 @@ struct HTTP {
 
     // Header fields and values
     struct Header {
-        static let JSON = "application/json"
+        static let AcceptField = "Accept"
+        static let ContentField = "Content-Type"
 
-        static let Accept = "Accept"
-        static let Content = "Content-Type"
-        static let XSRF = "X-XSRF-Token"
+        static let JSON = "application/json"
     }
 
     // Construct HTTP URL given method and parameters
-    static func constructHTTPCall(baseURL: String, method: String, optionalParameters: [String : String]?) -> NSURL {
+    static func constructHTTPCall(baseURL: String, method: String, optionalSuffix: String? = nil, optionalParameters: [String : String]? = nil) -> NSURL {
         var urlString = baseURL + method
+        if let suffix = optionalSuffix {
+            urlString += suffix
+        }
         if let parameters = optionalParameters {
             urlString += parameters.isEmpty ? "" : "?"
 

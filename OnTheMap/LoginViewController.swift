@@ -36,22 +36,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     @IBOutlet weak var debugLabel: UILabel!
 
     @IBAction func signIn(sender: UIButton) {
-        self.view.endEditing(true)
-        clearDebugLabel()
-        if checkValidness(loginField: loginField, passwordField: passwordField) {
-            UdacityAPI.client.signIn(login: loginField.text, password: passwordField.text) { success in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if success {
-                        self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
-                    } else {
-                        self.passwordField.text = ""
-                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
-                    }
-                }
-            }
-        } else {
-            setAndDissolveDebugLabel(View.InvalidTextFields)
-        }
+        signIn()
     }
 
     @IBAction func signUp(sender: UIButton) {
@@ -78,6 +63,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     }
 
     // MARK: - Auxiliary Methods
+
+    private func signIn() {
+        self.view.endEditing(true)
+        clearDebugLabel()
+        if checkValidness(loginField: loginField, passwordField: passwordField) {
+            // DEBUG_ONLY CAP
+//            UdacityAPI.client.signIn(login: Defaults.Login, password: Defaults.Password) { success in
+            UdacityAPI.client.signIn(login: loginField.text, password: passwordField.text) { success in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if success {
+                        self.performSegueWithIdentifier(Defaults.SignInSegue, sender: self)
+                    } else {
+                        self.passwordField.text = ""
+                        self.setAndDissolveDebugLabel(View.InvalidCredentials)
+                    }
+                }
+            }
+        } else {
+            setAndDissolveDebugLabel(View.InvalidTextFields)
+        }
+    }
 
     private func checkValidness(#loginField: UITextField, passwordField: UITextField) -> Bool {
         println("TODO: Check validity of login and rassword")
@@ -210,7 +216,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             passwordField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
-            signInButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+            signIn()
         }
 
         return false
@@ -272,6 +278,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         setupUI()
 
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Defaults.OnTapSelector)
+
+        // DEBUG_ONLY CAP
+//        signIn()
     }
 
     override func viewWillAppear(animated: Bool) {
