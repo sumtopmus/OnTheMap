@@ -13,13 +13,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     // Magic values
     private struct Defaults {
-
         // Selectors
         static let KeyboardWillShowSelector: Selector = "keyboardWillShow:"
         static let KeyboardWillHideSelector: Selector = "keyboardWillHide:"
         static let OnTapSelector: Selector = "onSingleTap:"
         // Segues
-        static let SignInSegue = "Sign In Segue"
+        static let SignInSegue = "Sign In"
+        static let SignUpSegue = "Sign Up"
     }
 
     // MARK: - Actions and Outlets
@@ -37,10 +37,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     @IBAction func signIn(sender: UIButton) {
         signIn()
-    }
-
-    @IBAction func signUp(sender: UIButton) {
-        println("TODO: Implement sign up for Udacity account")
     }
 
     func onSingleTap(gesture: UITapGestureRecognizer) {
@@ -86,6 +82,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     private func checkValidness(#loginField: UITextField, passwordField: UITextField) -> Bool {
         println("TODO: Check validity of login and rassword")
         return true
+    }
+
+    private func openURL(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
 
     // MARK: - Layout
@@ -294,13 +296,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         unsubscribeFromKeyboardNotifications()
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func unwindToLoginScreen(segue: UIStoryboardSegue) {
+        clearTextFields()
     }
-    */
 }

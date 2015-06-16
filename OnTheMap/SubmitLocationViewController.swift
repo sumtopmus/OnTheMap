@@ -13,6 +13,11 @@ class SubmitLocationViewController: UIViewController, UITextFieldDelegate, MKMap
 
     // Magic Values
     private struct Defaults {
+        // Coordinates of Stanford (default region for search)
+        static let Latitude: CGFloat = 37.4282631
+        static let Longitude: CGFloat = -122.1712559
+        static let Radius: CGFloat = 100
+
         // Segues
         static let UnwindSegue = "Unwind"
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A24F7091B2FBEDC0000F45C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F7081B2FBEDC0000F45C /* SignUpViewController.swift */; };
 		2A4CD0AF1B2C1EEE00CC6E1B /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CD0AE1B2C1EEE00CC6E1B /* AppNavigationBar.swift */; };
 		2A4CD0B11B2C246B00CC6E1B /* JSON-responses.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A4CD0B01B2C246B00CC6E1B /* JSON-responses.rtf */; };
 		2A4CD0B31B2C247F00CC6E1B /* Color-specs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A4CD0B21B2C247F00CC6E1B /* Color-specs.txt */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A24F7081B2FBEDC0000F45C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2A4CD0AE1B2C1EEE00CC6E1B /* AppNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
 		2A4CD0B01B2C246B00CC6E1B /* JSON-responses.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "JSON-responses.rtf"; sourceTree = "<group>"; };
 		2A4CD0B21B2C247F00CC6E1B /* Color-specs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Color-specs.txt"; sourceTree = SOURCE_ROOT; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5B216E1B2B76080099EC1C /* LoginViewController.swift */,
+				2A24F7081B2FBEDC0000F45C /* SignUpViewController.swift */,
 				2A5B216F1B2B76080099EC1C /* MapViewController.swift */,
 				2A5B216D1B2B76080099EC1C /* ListViewController.swift */,
 				2ADD8AF31B2D554200233AC6 /* AddLocationViewController.swift */,
@@ -321,6 +324,7 @@
 				2A5B21681B2B74FB0099EC1C /* AppDelegate.swift in Sources */,
 				2AF631CE1B2B911600F01999 /* StudentLocation.swift in Sources */,
 				2A5B21721B2B76080099EC1C /* MapViewController.swift in Sources */,
+				2A24F7091B2FBEDC0000F45C /* SignUpViewController.swift in Sources */,
 				2A4CD0B91B2CBEC800CC6E1B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

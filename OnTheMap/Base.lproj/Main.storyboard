@@ -55,7 +55,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUp:" destination="2xI-Bf-JUX" eventType="touchUpInside" id="fbT-x8-Fvr"/>
+                                    <segue destination="ANZ-Sh-Mix" kind="presentation" identifier="Sign Up" id="drn-fV-Pn6"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEBUG" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Y9-upH" userLabel="Debug Label">
@@ -103,12 +103,68 @@
                         <outlet property="passwordField" destination="laO-ip-zWK" id="NkY-fk-eSa"/>
                         <outlet property="signInButton" destination="0dX-xw-u0U" id="pZR-Qf-GV6"/>
                         <outlet property="signUpButton" destination="Xud-to-28J" id="7Qw-Nv-Xjb"/>
-                        <segue destination="lVS-xp-2li" kind="showDetail" identifier="Sign In Segue" id="OZW-wH-1nx"/>
+                        <segue destination="lVS-xp-2li" kind="showDetail" identifier="Sign In" id="OZW-wH-1nx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8U-Zn-eDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-913" y="-323"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="uib-0e-S0O">
+            <objects>
+                <viewController id="ANZ-Sh-Mix" customClass="SignUpViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qg9-g0-I28"/>
+                        <viewControllerLayoutGuide type="bottom" id="n8X-TF-Mzn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gzC-AS-XSe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YCO-TA-cpE">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Sign Up" id="fyx-nf-y55">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="H5n-QM-CAD">
+                                            <connections>
+                                                <segue destination="1TR-fA-gue" kind="unwind" identifier="Unwind From Cancel" unwindAction="unwindToLoginScreen:" id="GKu-aL-dTz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Qpx-JO-aig">
+                                            <connections>
+                                                <segue destination="1TR-fA-gue" kind="unwind" identifier="Unwind From Done" unwindAction="unwindToLoginScreen:" id="wvS-QR-yFr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pf-NC-fRZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Pf-NC-fRZ" firstAttribute="leading" secondItem="gzC-AS-XSe" secondAttribute="leading" id="H7t-CV-QCu"/>
+                            <constraint firstAttribute="trailing" secondItem="YCO-TA-cpE" secondAttribute="trailing" id="M8c-ya-jX5"/>
+                            <constraint firstItem="6Pf-NC-fRZ" firstAttribute="top" secondItem="YCO-TA-cpE" secondAttribute="bottom" id="RVk-p9-fyt"/>
+                            <constraint firstItem="YCO-TA-cpE" firstAttribute="leading" secondItem="gzC-AS-XSe" secondAttribute="leading" id="Yzm-nu-nOk"/>
+                            <constraint firstItem="YCO-TA-cpE" firstAttribute="top" secondItem="Qg9-g0-I28" secondAttribute="bottom" id="dpH-Qp-aq4"/>
+                            <constraint firstItem="n8X-TF-Mzn" firstAttribute="top" secondItem="6Pf-NC-fRZ" secondAttribute="bottom" id="vW4-F1-sXo"/>
+                            <constraint firstAttribute="trailing" secondItem="6Pf-NC-fRZ" secondAttribute="trailing" id="w40-dI-aUW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="H5n-QM-CAD" id="Vya-1J-I9a"/>
+                        <outlet property="doneButton" destination="Qpx-JO-aig" id="7W9-8l-zmJ"/>
+                        <outlet property="webView" destination="6Pf-NC-fRZ" id="HoT-5s-fj2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xn-4W-Xqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1TR-fA-gue" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-913" y="428"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="Ot5-M5-byn">
@@ -125,12 +181,45 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvj-6I-fcC" customClass="AppNavigationBar" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="On The Map" id="dP8-2U-3Mm"/>
+                                    <navigationItem title="On The Map" id="dP8-2U-3Mm">
+                                        <barButtonItem key="leftBarButtonItem" image="map-pin" id="iht-3Z-01Z" userLabel="Add User Location">
+                                            <connections>
+                                                <segue destination="ygT-18-8Uy" kind="presentation" identifier="Add User Location" id="572-Pf-tO7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="gwH-fJ-ywH" userLabel="Refresh Locations">
+                                            <connections>
+                                                <action selector="refreshLocations:" destination="AO1-8b-X3z" id="D9Q-G1-Et0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NiJ-hC-G2a">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Student Location Cell" textLabel="wjc-6c-2RC" detailTextLabel="ib9-Du-Nzt" style="IBUITableViewCellStyleSubtitle" id="2eK-DM-UOl">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2eK-DM-UOl" id="Rxn-dg-SWh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wjc-6c-2RC">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ib9-Du-Nzt">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-E3-eGF" userLabel="TView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="179"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="178.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBa-Pc-7xx" userLabel="T1 Label">
                                         <rect key="frame" x="279" y="50" width="42" height="20.5"/>
@@ -198,11 +287,11 @@
                                     <constraint firstAttribute="centerY" secondItem="4pJ-9K-BHR" secondAttribute="centerY" id="u5y-fQ-Tby"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PO3-z9-DgC" userLabel="MView">
-                                <rect key="frame" x="0.0" y="242.5" width="600" height="178"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PO3-z9-DgC" userLabel="MView">
+                                <rect key="frame" x="0.0" y="242" width="600" height="179"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VuV-Ce-NsJ" userLabel="Location Text Field">
-                                        <rect key="frame" x="20" y="74" width="560" height="30"/>
+                                        <rect key="frame" x="20" y="74.5" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -215,10 +304,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQ0-xg-lru" userLabel="BView">
-                                <rect key="frame" x="0.0" y="420.5" width="600" height="179"/>
+                                <rect key="frame" x="0.0" y="421" width="600" height="178.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFk-f4-SRB" userLabel="Find On The Map Button">
-                                        <rect key="frame" x="277" y="75" width="46" height="30"/>
+                                        <rect key="frame" x="277" y="74.5" width="46" height="30"/>
                                         <state key="normal" title="Button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -431,7 +520,6 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="pin-on-map-selected"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="On The Map" id="lsu-um-leb"/>
                     <connections>
                         <outlet property="mapView" destination="hzW-W5-XSx" id="FPz-Q3-0q1"/>
                     </connections>
@@ -487,4 +575,7 @@
         <image name="pin-on-map-selected" width="36" height="36"/>
         <image name="pin-on-map-unselected" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="572-Pf-tO7"/>
+    </inferredMetricsTieBreakers>
 </document>

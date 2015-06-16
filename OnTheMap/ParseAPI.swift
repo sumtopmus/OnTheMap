@@ -27,19 +27,24 @@ class ParseAPI {
         println("Log: ParseAPI initialization")
     }
 
+    // MARK: - Properties
+
+    var studentLocations: [StudentLocation]?
+
     // MARK: - Public API Access
 
-    func getStudentLocations(completion: ((locations: [StudentLocation]?) -> Void)?) {
-        let parameters = [Parameters.Limit : "\(Defaults.MaximumStudentsNumberToFetch)"]
+    func getStudentLocations(completion: ((locations: [StudentLocation]) -> Void)?) {
+//        let parameters = [Parameters.Limit : "\(Defaults.MaximumStudentsNumberToFetch)"]
 
-        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.StudentLocation, optionalParameters: parameters)
+        let url = HTTP.constructHTTPCall(Defaults.SecureBaseURL, method: Methods.StudentLocation, optionalParameters: nil)
         let request = createGETRequest(url)
         performRequest(request) { jsonData in
             println("Log: In getStudentLocations method, jsonData is obtained.")
             println("\(jsonData!)")
 
-            let jsonDictionarys = self.studentLocationsFromJSONResponse(jsonData)
-            completion?(locations: jsonDictionarys)
+            let locations = self.studentLocationsFromJSONResponse(jsonData)
+            self.studentLocations = locations
+            completion?(locations: locations)
         }
     }
 

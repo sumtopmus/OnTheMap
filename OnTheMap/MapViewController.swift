@@ -29,26 +29,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         updateStudentLocations()
     }
 
-    @IBAction func userLocationAdded(sender: UIStoryboardSegue)
-    {
-        let sourceViewController = sender.sourceViewController as! SubmitLocationViewController
-
-        let userLocation = StudentLocation(user: UdacityAPI.client.user!)
-        userLocation.latitude = sourceViewController.coordinate.latitude
-        userLocation.longitude = sourceViewController.coordinate.longitude
-        userLocation.mapString = sourceViewController.userLocation
-        userLocation.mediaURL = sourceViewController.userMediaLinkField.text
-
-        ParseAPI.client.postUserLocation(userLocation) { success in
-            if success {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.mapView.addAnnotation(userLocation)
-                    self.mapView.showAnnotations([userLocation], animated: true)
-                }
-            }
-        }
-    }
-
     // MARK: - Auxiliary methods
 
     private func updateStudentLocations() {
@@ -56,11 +36,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         ParseAPI.client.getStudentLocations(putLocationsOnMap)
     }
 
-    private func putLocationsOnMap(locations: [StudentLocation]?) {
-        if let studentLocations = locations {
+    private func putLocationsOnMap(locations: [StudentLocation]) {
+        if locations.count > 0 {
             dispatch_async(dispatch_get_main_queue()) {
-                self.mapView.addAnnotations(studentLocations)
+                self.mapView.addAnnotations(locations)
             }
+        }
+    }
+
+    private func openURL(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            UIApplication.sharedApplication().openURL(url)
         }
     }
 
@@ -80,8 +66,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        if let urlString = view.annotation.subtitle, url = NSURL(string: urlString) {
-            // TODO: Open link in Safari
+        if let urlString = view.annotation.subtitle {
+            openURL(urlString)
         }
     }
 
@@ -94,11 +80,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.showAnnotations(mapView.annotations, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -106,6 +87,26 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let navVC = segue.destinationViewController as! UINavigationController
             let destination = navVC.visibleViewController as! AddLocationViewController
             destination.region = mapView.region
+        }
+    }
+
+    @IBAction func userLocationAdded(segue: UIStoryboardSegue)
+    {
+        let sourceViewController = segue.sourceViewController as! SubmitLocationViewController
+
+        let userLocation = StudentLocation(user: UdacityAPI.client.user!)
+        userLocation.latitude = sourceViewController.coordinate.latitude
+        userLocation.longitude = sourceViewController.coordinate.longitude
+        userLocation.mapString = sourceViewController.userLocation
+        userLocation.mediaURL = sourceViewController.userMediaLinkField.text
+
+        ParseAPI.client.postUserLocation(userLocation) { success in
+            if success {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.mapView.addAnnotation(userLocation)
+                    self.mapView.showAnnotations([userLocation], animated: true)
+                }
+            }
         }
     }
 }
