@@ -73,7 +73,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - UITableView Delegate Methods
 
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         openURL(ParseAPI.client.studentLocations![indexPath.row].mediaURL)
     }
 
@@ -81,10 +81,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
         if ParseAPI.client.studentLocations == nil {
             updateStudentLocations()
         }
+        tableView.reloadData()
     }
 
     // MARK: - Navigation
